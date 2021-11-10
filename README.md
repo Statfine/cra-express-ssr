@@ -1,7 +1,6 @@
 # 前端应用-SSR
 
-> 基于 cra
-> react-router + react-redux + @reduxjs/toolkit + redux-saga + styled-components
+> cra + react-router + react-redux + @reduxjs/toolkit + redux-saga + styled-components
 
 ````
 
@@ -20,14 +19,11 @@ http://localhost:7001
 npm run build
 
 # 服务端构建
-npm run build & npm run build:server & start:server
-
-# 代码规范eslint
-npm run lint
+npm run build & npm run build:server
 
 ````
 
-## 配置 index.server.tsx
+## 配置 
 样式配置（styled-components）
 
 ```bash
@@ -44,26 +40,23 @@ const store = createStore(combineReducers({}), applyMiddleware(thunk));
 
 SSR中不能异步注入saga和redux；需要在入口(创建)的时候添加
 
-runSaga(testSaga);
+src/store/configureStore.ts runSaga(testSaga);
 
-combineReducers({ test: testReducer}）
+src/store/reducers.ts combineReducers({ test: testReducer}）
 ```
 
 应用输出
 
 ```bash
-静态文件输出  build,
-ssr文件输出 dist
+静态文件输出  build
+ssr文件输出  dist
 
 ```
 
 其它配置
 ```bash
-静态文件输出  build,
-ssr文件输出 dist
-
 config/webpack.config.js 添加@loadable/webpack-plugin 文件区分
-config/paths 添加ssr相关打包路径
+config/paths.js 添加ssr相关打包路径
 scripts/build.server.js SSR打包命令入口
 src/index.server.tsx SSR打包入口
 
