@@ -78,17 +78,17 @@ const serverRender = async (
   const extractor = new ChunkExtractor({ statsFile });
 
   const jsx = (
-    <ChunkExtractorManager extractor={extractor}>
-      <PreloadContext.Provider value={preloadContext}>
-        <Provider store={store}>
-          <StaticRouter location={req.url} context={context}>
-            <HelmetProvider>
-              <App />
-            </HelmetProvider>
-          </StaticRouter>
-        </Provider>
-      </PreloadContext.Provider>
-    </ChunkExtractorManager>
+    // <ChunkExtractorManager extractor={extractor}> ChunkExtractorManager 导致useState不能使用
+    <PreloadContext.Provider value={preloadContext}>
+      <Provider store={store}>
+        <StaticRouter location={req.url} context={context}>
+          <HelmetProvider>
+            <App />
+          </HelmetProvider>
+        </StaticRouter>
+      </Provider>
+    </PreloadContext.Provider>
+    // </ChunkExtractorManager>
   );
 
   ReactDOMServer.renderToStaticMarkup(jsx);

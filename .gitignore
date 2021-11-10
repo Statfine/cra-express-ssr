@@ -1,6 +1,7 @@
 # Don't check auto-generated stuff into git
 coverage
 build
+dist
 node_modules
 stats.json
 .pnp
@@ -9,6 +10,7 @@ stats.json
 # misc
 .DS_Store
 npm-debug.log*
+package-lock.json
 yarn-debug.log*
 yarn-error.log*
 
