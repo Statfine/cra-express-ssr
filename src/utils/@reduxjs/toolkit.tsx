@@ -1,4 +1,3 @@
-import { RootStateKeyType } from '../types/injector-typings';
 import {
   createSlice as createSliceOriginal,
   SliceCaseReducers,
@@ -11,7 +10,7 @@ import {
 export const createSlice = <
   State,
   CaseReducers extends SliceCaseReducers<State>,
-  Name extends RootStateKeyType,
+  Name extends string = string,
 >(
   options: CreateSliceOptions<State, CaseReducers, Name>,
 ) => {

@@ -8,26 +8,18 @@
 import 'react-app-polyfill/ie11';
 import 'react-app-polyfill/stable';
 
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 import FontFaceObserver from 'fontfaceobserver';
 
-// Use consistent styling
-import 'sanitize.css/sanitize.css';
-
-import { App } from 'app';
-
 import { HelmetProvider } from 'react-helmet-async';
-
 import { configureAppStore } from 'store/configureStore';
+import { Provider } from 'react-redux';
+import * as serviceWorker from './serviceWorker';
+import { loadableReady } from '@loadable/component';
 
-import { ThemeProvider } from 'styles/theme/ThemeProvider';
-
-import reportWebVitals from 'reportWebVitals';
-
-// Initialize languages
-import './locales/i18n';
+import App from './App';
 
 // Observe loading of Inter (to remove 'Inter', remove the <link> tag in
 // the index.html file and this observer)
@@ -39,29 +31,31 @@ openSansObserver.load().then(() => {
 });
 
 const store = configureAppStore();
-const MOUNT_NODE = document.getElementById('root') as HTMLElement;
+const Root = () => {
+  return (
+    <React.StrictMode>
+      <Provider store={store}>
+        <HelmetProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </HelmetProvider>
+      </Provider>
+    </React.StrictMode>
+  );
+};
 
-ReactDOM.render(
-  <Provider store={store}>
-    <ThemeProvider>
-      <HelmetProvider>
-        <React.StrictMode>
-          <App />
-        </React.StrictMode>
-      </HelmetProvider>
-    </ThemeProvider>
-  </Provider>,
-  MOUNT_NODE,
-);
+const root = document.getElementById('root');
 
-// Hot reloadable translation json files
-if (module.hot) {
-  module.hot.accept(['./locales/i18n'], () => {
-    // No need to render the App again because i18next works with the hooks
+if (process.env.NODE_ENV === 'production') {
+  loadableReady(() => {
+    ReactDOM.hydrate(<Root />, root);
   });
+} else {
+  ReactDOM.render(<Root />, root);
 }
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
+serviceWorker.unregister();

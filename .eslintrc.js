@@ -10,6 +10,7 @@ module.exports = {
   plugins: ['prettier'],
   rules: {
     'prettier/prettier': ['error', prettierOptions],
+    'react-hooks/rules-of-hooks': 'off',
   },
   overrides: [
     {
