@@ -1,13 +1,9 @@
 # 前端应用-SSR
 
-> cra + react-router + react-redux + @reduxjs/toolkit + redux-saga + styled-components
+> cra + express + react-router + react-redux + @reduxjs/toolkit + redux-saga + styled-components
 
 ````
-
-
-## Build Setup
-
-```bash
+# Start
 yarn install
 npm start
 http://localhost:7000/
