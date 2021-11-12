@@ -19,7 +19,7 @@ const App = () => {
     <div>
       <Menu />
       <hr />
-      <Route path="/hello" component={RedPage} />
+      <Route path="/hello/:id" component={RedPage} />
       <Route path="/style" component={BluePage} />
       <Route path="/request" component={UsersPage} />
       <Route path="/saga" component={TestPage} />

@@ -7,7 +7,7 @@ interface TypeMenuItem {
 }
 
 const MENU_LIST: TypeMenuItem[] = [
-  { name: 'Hello', path: '/hello' },
+  { name: 'Hello', path: '/hello/word' },
   { name: 'Style', path: '/style' },
   { name: 'Request', path: '/request' },
   { name: 'Redux saga', path: '/saga' },
