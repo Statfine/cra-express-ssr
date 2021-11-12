@@ -2,11 +2,11 @@
  * @Description: SSR build
  * @Author: shaojia
  * @Date: 2021-11-09 11:11:29
- * @LastEditTime: 2021-11-09 11:11:29
+ * @LastEditTime: 2021-11-12 15:06:34
  * @LastEditors: shaojia
  */
 process.env.BABEL_ENV = 'production';
-process.env.NODE_ENV = 'production';
+process.env.NODE_ENV = 'development';
 
 process.on('unhandledRejection', error => {
   throw error;

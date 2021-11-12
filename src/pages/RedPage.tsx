@@ -1,7 +1,7 @@
 import React from 'react';
 
 const RedPage = () => {
-  return <div>RedPage</div>;
+  return <div>Hello Word</div>;
 };
 
 export default RedPage;

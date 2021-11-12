@@ -1,21 +1,28 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+interface TypeMenuItem {
+  name: string;
+  path: string;
+}
+
+const MENU_LIST: TypeMenuItem[] = [
+  { name: 'Hello', path: '/hello' },
+  { name: 'Style', path: '/style' },
+  { name: 'Request', path: '/request' },
+  { name: 'Redux saga', path: '/saga' },
+];
+
 const Menu = () => {
+  const [menuList] = React.useState<TypeMenuItem[]>(MENU_LIST);
+
   return (
     <ul>
-      <li>
-        <Link to="/red">Red</Link>
-      </li>
-      <li>
-        <Link to="/blue">Blue</Link>
-      </li>
-      <li>
-        <Link to="/users">Users</Link>
-      </li>
-      <li>
-        <Link to="/test">Test</Link>
-      </li>
+      {menuList.map((i: TypeMenuItem) => (
+        <li key={i.name}>
+          <Link to={i.path}>{i.name}</Link>
+        </li>
+      ))}
     </ul>
   );
 };
